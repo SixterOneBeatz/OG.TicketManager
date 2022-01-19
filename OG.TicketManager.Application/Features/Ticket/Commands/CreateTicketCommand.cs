@@ -27,7 +27,7 @@ namespace OG.TicketManager.Application.Features.Ticket.Commands
         public async Task<int> Handle(CreateTicketCommand request, CancellationToken cancellationToken)
         {
             Domain.Ticket newTicket = _mapper.Map<Domain.Ticket>(request);
-            _unitOfWork.Repository<Domain.Ticket>().AddEntity(newTicket);
+            _unitOfWork.TicketRepository.AddEntity(newTicket);
             int result = await _unitOfWork.Complete();
             if (result <= 0)
             {
