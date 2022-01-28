@@ -7,7 +7,6 @@ namespace OG.TicketManager.API.HostedServices
     public class EmailInterceptorHostedService : IHostedService
     {
         private readonly IEmailInterceptorService _emailInterceptorService;
-        private readonly IServiceScopeFactory _serviceScopeFactory;
         private readonly IConfiguration _configuration;
         private readonly IMediator _mediator;
 
@@ -16,10 +15,9 @@ namespace OG.TicketManager.API.HostedServices
         {
             _emailInterceptorService = emailInterceptorService;
             _configuration = configuration;
-            _serviceScopeFactory = serviceScopeFactory;
-            _mediator = _serviceScopeFactory.CreateScope()
-                                            .ServiceProvider
-                                            .GetRequiredService<IMediator>();
+            _mediator = serviceScopeFactory.CreateScope()
+                                           .ServiceProvider
+                                           .GetRequiredService<IMediator>();
         }
         public Task StartAsync(CancellationToken cancellationToken)
         {
