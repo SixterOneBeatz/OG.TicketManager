@@ -5,6 +5,6 @@ const Form = styled.form`
   margin-top: 20;
 `;
 
-export const DialogTicketStyles = {
+export const DialogUpdateStyles = {
   Form,
 };
