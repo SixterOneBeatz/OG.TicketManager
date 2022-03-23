@@ -1,5 +1,6 @@
 using Microsoft.OpenApi.Models;
 using OG.TicketManager.API.HostedServices;
+using OG.TicketManager.API.Hubs;
 using OG.TicketManager.API.Middleware;
 using OG.TicketManager.Application;
 using OG.TicketManager.Infrastructure;
@@ -24,36 +25,41 @@ builder.Services.AddSwaggerGen(c =>
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-{
     {
-        new OpenApiSecurityScheme
         {
-            Reference = new OpenApiReference
+            new OpenApiSecurityScheme
             {
-                Type = ReferenceType.SecurityScheme,
-                Id = "Bearer"
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                },
+                Scheme = "oauth2",
+                Name = "Bearer",
+                In = ParameterLocation.Header,
+    
             },
-            Scheme = "oauth2",
-            Name = "Bearer",
-            In = ParameterLocation.Header,
-
-        },
-        new List<string>()
-    }
-});
+            new List<string>()
+        }
+    });
 });
 
+builder.Services.AddSignalR();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
-builder.Services.AddHostedService<EmailInterceptorHostedService>();
+//builder.Services.AddHostedService<EmailInterceptorHostedService>();
+
+string clientUrl = builder.Configuration.GetValue<string>("UrlClient");
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder =>
-    builder.AllowAnyOrigin()
+    builder.WithOrigins(clientUrl)
            .AllowAnyMethod()
-           .AllowAnyHeader());
+           .AllowAnyHeader()
+           .AllowCredentials());
 });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -70,5 +76,7 @@ app.UseAuthorization();
 app.UseCors("CorsPolicy");
 
 app.MapControllers();
+
+app.MapHub<TicketHub>("/hub");
 
 app.Run();
