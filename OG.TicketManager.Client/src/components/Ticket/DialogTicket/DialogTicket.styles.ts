@@ -1,9 +1,7 @@
-import styled from "styled-components";
-
-const Form = styled.form`
-  width: "100%";
-  margin-top: 20;
-`;
+const Form: React.CSSProperties = {
+  width: "100%",
+  marginTop: 20,
+};
 
 export const DialogTicketStyles = {
   Form,

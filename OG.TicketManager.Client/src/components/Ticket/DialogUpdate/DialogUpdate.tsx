@@ -64,7 +64,7 @@ export const DialogUpdate = (props: DialogUpdateProps) => {
       <DialogTitle>Update ticket</DialogTitle>
       <DialogContent>
         <DialogContentText>Type ticket information...</DialogContentText>
-        <DialogUpdateStyles.Form>
+        <form style={styles.Form}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <TextField
@@ -95,7 +95,7 @@ export const DialogUpdate = (props: DialogUpdateProps) => {
               />
             </Grid>
           </Grid>
-        </DialogUpdateStyles.Form>
+        </form>
       </DialogContent>
       <DialogActions>
         <Button

@@ -61,7 +61,7 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: [".ts", ".js", ".json", ".tsx"],
     alias: {
-      "@mui/styled-engine": "@mui/styled-engine-sc",
+      "@mui/styles": path.resolve(__dirname, "node_modules", "@mui/styles"),
     },
   },
   devServer: {

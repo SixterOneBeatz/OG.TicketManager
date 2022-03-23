@@ -47,7 +47,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddSignalR();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices();
-builder.Services.AddHostedService<EmailInterceptorHostedService>();
+//builder.Services.AddHostedService<EmailInterceptorHostedService>();
 
 string clientUrl = builder.Configuration.GetValue<string>("UrlClient");
 

@@ -5,13 +5,16 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import LibraryAddCheckIcon from "@mui/icons-material/LibraryAddCheck";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import {
   AppBar,
+  Box,
   Button,
   TableHead,
+  Toolbar,
   Tooltip,
 } from "@mui/material";
 import { Ticket } from "../../../models/Tickets/Tickets";
@@ -59,6 +62,8 @@ interface TableTicketsProps {
 }
 
 export const TableTickets = (props: TableTicketsProps) => {
+  const styles = TableTicketsStyles;
+
   const { onCreateNewTicket, onEditTicket } = props;
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [page, setPage] = useState(0);
@@ -122,7 +127,7 @@ export const TableTickets = (props: TableTicketsProps) => {
   }, []);
 
   return (
-    <TableTicketsStyles.TablePaper>
+    <Paper sx={styles.Paper}>
       <TableContainer>
         <Table stickyHeader>
           <TableHead>
@@ -185,9 +190,9 @@ export const TableTickets = (props: TableTicketsProps) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <TableTicketsStyles.Footer>
+      <Box sx={styles.Footer}>
         <AppBar position="static">
-          <TableTicketsStyles.FooterToolbar>
+          <Toolbar sx={styles.FooterToolbar}>
             <span>
               <Tooltip title="Add ticket" arrow placement="left-start">
                 <Button
@@ -214,9 +219,9 @@ export const TableTickets = (props: TableTicketsProps) => {
                 { value: tickets.length, label: "All" },
               ]}
             />
-          </TableTicketsStyles.FooterToolbar>
+          </Toolbar>
         </AppBar>
-      </TableTicketsStyles.Footer>
-    </TableTicketsStyles.TablePaper>
+      </Box>
+    </Paper>
   );
 };
