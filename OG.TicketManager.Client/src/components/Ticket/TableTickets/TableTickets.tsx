@@ -62,8 +62,6 @@ interface TableTicketsProps {
 }
 
 export const TableTickets = (props: TableTicketsProps) => {
-  const styles = TableTicketsStyles;
-
   const { onCreateNewTicket, onEditTicket } = props;
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [page, setPage] = useState(0);
@@ -127,7 +125,7 @@ export const TableTickets = (props: TableTicketsProps) => {
   }, []);
 
   return (
-    <Paper sx={styles.Paper}>
+    <TableTicketsStyles.StyledPaper>
       <TableContainer>
         <Table stickyHeader>
           <TableHead>
@@ -190,9 +188,9 @@ export const TableTickets = (props: TableTicketsProps) => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Box sx={styles.Footer}>
+      <TableTicketsStyles.StyledBox>
         <AppBar position="static">
-          <Toolbar sx={styles.FooterToolbar}>
+          <TableTicketsStyles.FooterToolbar>
             <span>
               <Tooltip title="Add ticket" arrow placement="left-start">
                 <Button
@@ -219,9 +217,9 @@ export const TableTickets = (props: TableTicketsProps) => {
                 { value: tickets.length, label: "All" },
               ]}
             />
-          </Toolbar>
+          </TableTicketsStyles.FooterToolbar>
         </AppBar>
-      </Box>
-    </Paper>
+      </TableTicketsStyles.StyledBox>
+    </TableTicketsStyles.StyledPaper>
   );
 };

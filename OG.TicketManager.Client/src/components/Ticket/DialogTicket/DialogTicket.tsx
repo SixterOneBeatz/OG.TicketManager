@@ -49,7 +49,7 @@ export const DialogTicket = (props: DialogTicketProps) => {
       <DialogTitle>New ticket</DialogTitle>
       <DialogContent>
         <DialogContentText>Type ticket description...</DialogContentText>
-        <form style={styles.Form}>
+        <DialogTicketStyles.StyledForm>
           <TextField
             color="primary"
             name="description"
@@ -62,7 +62,7 @@ export const DialogTicket = (props: DialogTicketProps) => {
             value={formik.values.description}
             onChange={formik.handleChange}
           />
-        </form>
+        </DialogTicketStyles.StyledForm>
       </DialogContent>
       <DialogActions>
         <Button

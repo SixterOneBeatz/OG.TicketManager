@@ -23,7 +23,6 @@ interface DialogUpdateProps {
 export const DialogUpdate = (props: DialogUpdateProps) => {
   const { ticket } = props;
   const [open, setOpen] = useState(false);
-  const styles = DialogUpdateStyles;
   const validations = yup.object({
     id: yup.number().min(1, "Invalid ticket Id"),
     description: yup.string().required("Not empty description"),
@@ -64,7 +63,7 @@ export const DialogUpdate = (props: DialogUpdateProps) => {
       <DialogTitle>Update ticket</DialogTitle>
       <DialogContent>
         <DialogContentText>Type ticket information...</DialogContentText>
-        <form style={styles.Form}>
+        <DialogUpdateStyles.StyledForm>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <TextField
@@ -95,7 +94,7 @@ export const DialogUpdate = (props: DialogUpdateProps) => {
               />
             </Grid>
           </Grid>
-        </form>
+        </DialogUpdateStyles.StyledForm>
       </DialogContent>
       <DialogActions>
         <Button

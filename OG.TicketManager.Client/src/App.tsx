@@ -14,7 +14,7 @@ const App = () => {
 
   const [ticketToUpdate, setTicketToUpdate] = useState<Ticket>();
   const handleEdit = (ticket: Ticket) => {
-    setTicketToUpdate(ticket);
+    setTicketToUpdate({ ...ticket });
   };
 
   return (
